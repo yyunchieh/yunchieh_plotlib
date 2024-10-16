@@ -6,7 +6,7 @@ def plot_time_series(data, x_column, y_column, title = "Times Series Plot", xlab
     ax.set_title(title)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
-    ax.set_xticks(rotation=45)
+    ax.xticks(rotation=45)
     ax.grid(axis="y",alpha=0.3)
     ax.legend(loc="best")
     ax.spines["right"].set_color("none")
