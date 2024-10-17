@@ -1,4 +1,5 @@
 from sklearn.manifold import TSNE
+import numpy as np
 import matplotlib.pyplot as plt
 
 def plot_tsne(data, n_components=2,perplexity=30, learning_rate=200, title = "t-SNE Plot", labels = None):
