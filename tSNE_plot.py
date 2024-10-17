@@ -1,23 +1,43 @@
 from sklearn.manifold import TSNE
+from sklearn.datasets import load_iris
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
 
-def plot_tsne(data, n_components=2,perplexity=30, learning_rate=200, title = "t-SNE Plot", labels = None):
-    tsne = TSNE(n_components = n_components, perplexity=perplexity, learning_rate=learning_rate)
-    tsne_result = tsne.fit_transform(data)
+#t-SNE function
 
-    fig, ax = plt.subplots(figsize=(10,6))
+def plot_tsne(tsne_results, ax, **kwargs):
+
+    plt.sca(ax)
+
+    scatter_params = kwargs.get("scatter_params", {})
+    scatter = ax.scatter(tsne_results[:, 0], tsne_results[:, 1], **scatter_params)
+ 
+    if "set_title" in kwargs.keys():
+        ax.set_title(**kwargs["set_title"])
+
+    if "set_xlabel" in kwargs.keys():
+        ax.set_xlabel(**kwargs["set_xlabel"])
+
+    if "set_xlim" in kwargs.keys():
+        ax.set_xlim(**kwargs["set_xlim"])
+        
+    if "set_xticks" in kwargs.keys():
+        ax.set_xticks(**kwargs["set_xticks"])
+
+    if "tick_params" in kwargs.keys():
+        ax.tick_params(**kwargs["tick_params"])
+
     ax.spines["right"].set_color("none")
     ax.spines["top"].set_color("none")
-    if labels is not None:
-        scatter = ax.scatter(tsne_result[:, 0], tsne_result[:, 1], c=labels, cmap = "viridis", s=50, alpha=0.7)
-        cbar = fig.colorbar(scatter, ax=ax)
-        cbar.set_label('Color intensity')
 
     
-    else:
-        ax.scatter(tsne_result[:, 0], tsne_result[:, 1], s=50, alpha=0.7)
-
-
-    ax.set_title(title)
-    plt.show()
+    if kwargs.get("color_bar", False):
+        colorbar_ax = plt.colorbar(scatter, ax=ax, format='{x:.1f}')
+        vmin, vmax = np.min(colorbar_ax.get_ticks()), np.max(colorbar_ax.get_ticks())
+        colorbar_ax.mappable.set_clim(vmin=vmin, vmax=vmax)
+        colorbar_ax.set_ticks(ticks = [vmin, vmax], labels=['Low', 'High'], size = 12)
+        colorbar_ax.set_label(label='Feature value', size = 16, labelpad=20, y=0.5)
+        colorbar_ax.outline.set_visible(False)
+        colorbar_ax.ax.tick_params(axis='both', top=False, right=False, bottom=False, left=False)
+    
