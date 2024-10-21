@@ -36,7 +36,6 @@ def plot_umap(X, y, ax, **kwargs):
         ax.legend(title="Classes", loc="best", fontsize=10)
 
 
-
     if 'set_title' in kwargs.keys():
         ax.set_title(kwargs['set_title']["label"])
     

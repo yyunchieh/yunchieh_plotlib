@@ -5,7 +5,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pandas.api.types import is_numeric_dtype
 
-
 #t-SNE function
 
 def plot_tsne(X, y, ax, **kwargs):
