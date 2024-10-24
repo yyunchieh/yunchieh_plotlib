@@ -1,4 +1,4 @@
-# Visualization Package
+# yunchieh_plotlib Package
 
 # Overview
 This package provides a set of visualization tools for data analysis and interpretation, including SHAP values, UMAP, t-SNE, time series plots, and histograms. The functions are designed to facilitate the exploration and understanding of complex datasets.
