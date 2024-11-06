@@ -1,37 +1,22 @@
-# Ignore Conda and Anaconda related files and directories
-.conda/
-.anaconda/
-.continuum/
-.condarc
-
-# Ignore VSCode settings
-.vscode/
-
-# Ignore Jupyter Notebook checkpoints
-.ipynb_checkpoints/
-
-# Ignore other unnecessary configuration files
+# Ignore system directories and files
+Application Data/
+Cookies/
+Local Settings/
+My Documents/
+NetHood/
+PrintHood/
+Recent/
+SendTo/
+Templates/
+「開始」功能表/
 .bash_history
-.cache/
 .git-credentials
 .gitconfig
+.ipynb_checkpoints/
 .ipython/
 .jupyter/
 .lesshst
 .matplotlib/
 .spyder-py3/
 .ssh/
-
-# Ignore system-specific directories
-/AppData/
-/Documents/
-/Downloads/
-/Favorites/
-/Links/
-/Music/
-/OneDrive/
-/Pictures/
-/Saved Games/
-/Searches/
-/Videos/
-/ntuser.dat*
+.vscode/
