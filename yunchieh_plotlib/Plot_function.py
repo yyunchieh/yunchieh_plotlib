@@ -214,30 +214,35 @@ def plot_umap(X, y, ax, **kwargs):
 
 
 # Box Plot
-def plot_boxplot(ax, data, column, **kwargs):
-    ax.boxplot(data[column],
-    patch_artist = True,
-    boxprops = dict(facecolor="skyblue", color="black"),
-    medianprops=dict(color="red"),
-    whiskerprops=dict(color="black"),
-    capprops=dict(color="black"))
+def plot_boxplot(ax, data, positions, box_props, **kwargs):
+    bp = ax.boxplot(data, positions=positions, patch_artist= True)
+    ax.spines[["right", "top", "bottom", "left"]].set_color("none")
 
     if "set_title" in kwargs:
-        ax.set_title(kwargs["set_title"])
+        ax.set_title(**kwargs["set_title"])
 
     if "set_xlabel" in kwargs:
-        ax.set_xlabel(kwargs["set_xlabel"])
+        ax.set_xlabel(**kwargs["set_xlabel"])
 
     if "set_ylabel" in kwargs:
-        ax.set_ylabel(kwargs["set_xticks"])
+        ax.set_ylabel(**kwargs["set_ylabel"])
 
-    if "set_xticklabels" in kwargs:
-        ax.set_xticklabels(kwargs["set_xticklabels"])
+    if "set_xticks" in kwargs:
+        ax.set_xticks(**kwargs["set_xticks"])
+    
+    if "grid" in kwargs:
+        ax.grid(**kwargs["grid"])
 
     if "tick_params" in kwargs:
         ax.tick_params(**kwargs["tick_params"])
 
-    ax.grid(axis="y", alpha=0.3)
+    if "set_ylim" in kwargs:
+        ax.set_ylim(**kwargs["set_ylim"])
 
-    ax.spines["right"].set_color("none")
-    ax.spines["top"].set_color("none")
+    if "set_yticks" in kwargs:
+        ax.set_yticks(**kwargs["set_yticks"])
+
+    if box_props != None:
+        for item_name in box_props:
+            for item, prop in zip(bp[item_name], box_props[item_name]):
+                item.set(**prop)
