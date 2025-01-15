@@ -1,0 +1,30 @@
+# 忽略系統檔案
+*.log
+*.tmp
+*.swp
+*.bak
+*.DS_Store
+desktop.ini
+Thumbs.db
+
+# 忽略特定目錄
+.cache/
+.conda/
+.ipynb_checkpoints/
+.vscode/
+.ssh/
+anaconda/
+anaconda3/
+AppData/
+Contacts/
+Documents/
+Downloads/
+Favorites/
+Music/
+Pictures/
+Videos/
+OneDrive/
+
+# 忽略特定檔案
+NTUSER.DAT*
+*.lnk
