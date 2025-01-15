@@ -246,3 +246,35 @@ def plot_boxplot(ax, data, positions, box_props, **kwargs):
         for item_name in box_props:
             for item, prop in zip(bp[item_name], box_props[item_name]):
                 item.set(**prop)
+
+
+def plot_errorbar(ax, x, y, yerr,fmt="o", errorbar_props=None, **kwargs):
+    err_lines = ax.errorbar(x, y, yerr=yerr, fmt=fmt, **(errorbar_props or {}))
+    if "set_title" in kwargs:
+        ax.set_title(**kwargs["set_title"])
+
+    if "set_xlabel" in kwargs:
+        ax.set_xlabel(**kwargs["set_xlabel"])
+
+    if "set_ylabel" in kwargs:
+        ax.set_ylabel(**kwargs["set_ylabel"])
+
+    if "set_xticks" in kwargs:
+        ax.set_xticks(**kwargs["set_xticks"])
+    
+    if "grid" in kwargs:
+        ax.grid(**kwargs["grid"])
+
+    if "tick_params" in kwargs:
+        ax.tick_params(**kwargs["tick_params"])
+
+    if "set_ylim" in kwargs:
+        ax.set_ylim(**kwargs["set_ylim"])
+
+    if "set_yticks" in kwargs:
+        ax.set_yticks(**kwargs["set_yticks"])
+    
+    if "set_xlim" in kwargs:
+        ax.set_xlim(**kwargs["set_xlim"])
+
+    return err_lines
